@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+      <!--Section: Products v.3-->
+    <section class="text-center mb-4">
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+            <h2 class="text-secondary">balance:${{ userprofile.balance }}</h2>
+           <h1>Modify/Create/Delete Details</h1>
+        </div>
+      </div>
+      <form  action="{% url 'core:editprofile' %}">
+          <div class="form-group">
+              <button class="btn btn-outline-info">Update Address</button>
+          </div>
+      </form>
+        <form  action="{% url 'core:deleteShip' %}">
+          <div class="form-group">
+              <button class="btn btn-outline-info">Delete Shipping Address</button>
+          </div>
+      </form>
+        <form  action="{% url 'core:deleteBill' %}">
+          <div class="form-group">
+              <button class="btn btn-outline-info">Delete Billing Address</button>
+          </div>
+      </form>
+        <form  action="{% url 'core:deleteCard' %}">
+          <div class="form-group">
+              <button class="btn btn-outline-info">Delete Card</button>
+          </div>
+      </form>
+    </div>
+    </section>
+</div>
+{% endblock content %}

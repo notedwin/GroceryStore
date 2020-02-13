@@ -1,0 +1,40 @@
+Insert INTO "Customer" ("first_name", "last_name", "customer_id", "balance")
+Values(('Bob', 'Hope', '1',0')
+,'Renne', 'Hicks', '2','200');
+
+
+INSERT INTO "Card" ("state", "zipcode", "street", "cardnumber", "customer_id", "city")
+VALUES ('IL', '08001', 'Oxnard Dr', '4556418275026205', (SELECT c_id FROM public."Customer" WHERE c_username='1'),'Rockford'),
+('IL', '60616', 'Michigan Ave', '54921321321373', (SELECT c_id FROM public."Customer" WHERE c_username='2'),'Chicago'),
+);
+
+INSERT INTO "Product" ("product_name", "category", "product_id", ,"alc","nutrition","size")
+VALUES
+('apples', 'food', 1, 1, 0, 15, 5),
+('bananas', 'food', 2, 1, 0, 75, 5),
+('Froot Loops', 'other', 3, 0, 150, 20),
+('bread', 'food', 4, 0, 100, 10),
+('vodka', 'alcohol', 7, 60, 0, 10);
+
+insert into "Staff"("empolyeeId", "job_title", "salary", "state", "street", "zip", "city")
+values
+('1', 'Margret Thatcher', 'Manager', 80000, 'CA', '127 Patrick Blvd', 94002, 'Los Angeles'),
+('2', 'Carl Jung', 'Worker', 50000, 'CA', '240 Miami St', 94002, 'Los Angeles'),
+
+
+insert into "Warehouse"("warehouse_id",warehouse_name,"street", "zipcode", "state", "city", "capacity")
+values 
+(1, 'LA Warehouse', '700 Beverly Ave', 90613, 'CA', 'Los Angeles', 40000),
+(2, 'Chicago Warehouse' ,'200 Wabash Ave', 60615, 'IL',  'Chicago', 700000),
+(3, 'Phil Warehouse', '340 Martin Luther King Drive', '30123', 'PA', 'Philedelphia', '12000');
+
+insert into "Stock"("warehouse_id", "quantity", "product_id")
+values
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=90613), 7100, (SELECT product_id FROM Product WHERE product_name='apples')),
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=90613), 6100, (SELECT product_id FROM Product WHERE product_name='bananas')),
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=60615), 5300, (SELECT product_id FROM Product WHERE product_name='Froot Loops')),
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=60615), 1200, (SELECT product_id FROM Product WHERE product_name='bread')),
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=60615), 4500, (SELECT product_id FROM Product WHERE product_name='vodka')),
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=30123), 2100, (SELECT product_id FROM Product WHERE product_name='apples')),
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=30123), 1500, (SELECT product_id FROM Product WHERE product_name='bananas')),
+((SELECT warehouse_id FROM Warehouse WHERE zipcode=30123), 1200, (SELECT product_id FROM Product WHERE product_name='Vodka')),
